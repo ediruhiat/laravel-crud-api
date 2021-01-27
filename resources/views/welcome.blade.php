@@ -15,7 +15,7 @@
             <div class="nav-links">
                 <ul>
                     <li><a href="/docs">Documentation</a></li>
-                    <li><a href="#">Example</a></li>
+                    <li><a href="/example">Example</a></li>
                 </ul>
             </div>
         </div>

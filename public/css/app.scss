@@ -15,6 +15,14 @@ html {
     h6 {
         font-weight: 600;
     }
+
+    li {
+        list-style: none;
+    }
+
+    strong {
+        font-weight: 600;
+    }
 }
 
 body {
@@ -23,6 +31,8 @@ body {
 
     min-height: 100vh;
     width: 100%;
+
+    overflow-x: hidden;
 
     .page-wrapper {
         display: flex;
@@ -82,11 +92,13 @@ body {
             }
         }
 
-        &.docs {
+        @mixin wrapper-page {
             display: flex;
             align-items: flex-start;
             justify-content: flex-start;
             flex-direction: column;
+
+            padding-bottom: 15vh;
 
             width: 100vw;
             height: auto;
@@ -99,21 +111,68 @@ body {
                 line-height: calc(24px * 1.68);
             }
 
-            .logo {
-                padding: 1rem 0;
-                h1 {
-                    font-size: 24px;
+            a {
+                text-decoration: none;
+                color: #555;
+                .logo {
+                    padding: 1rem 0;
+                    cursor: pointer;
+                    h1 {
+                        font-size: 24px;
+                    }
                 }
             }
+        }
+
+        &.docs {
+            @include wrapper-page();
 
             .docs-content {
                 margin-bottom: 1.5rem;
-            }
 
-            .endpoints {
-                margin-top: 1rem;
-                border-radius: 5px;
-                box-shadow: 0px 3px 10px rgba($color: #000000, $alpha: 0.3);
+                ul {
+                    display: flex;
+                    flex-direction: column;
+                    margin-top: 0.5rem;
+                    row-gap: 0.5rem;
+
+                    ol {
+                        margin-left: 1rem;
+                        li {
+                            list-style: decimal;
+                        }
+                    }
+                }
+
+                code {
+                    display: block;
+                    background-color: #222;
+                    margin: 10px 0;
+                    border-radius: 5px;
+                    padding: 10px;
+                    color: #eee;
+                }
+
+                .example-link {
+                    text-decoration: underline;
+                    color: #f14435;
+                }
+            }
+        }
+
+        .ins {
+            margin: 1rem 0;
+            border-radius: 5px;
+            box-shadow: 0px 2px 5px rgba($color: #000000, $alpha: 0.4);
+        }
+
+        &.example {
+            @include wrapper-page();
+
+            ol {
+                li {
+                    list-style: decimal;
+                }
             }
         }
     }
