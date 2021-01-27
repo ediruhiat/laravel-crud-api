@@ -6,7 +6,16 @@
 }
 
 html {
-  font-family: "Segoe UI", sans-serif;
+  font-family: "Segoe UI", "Helvetica", sans-serif;
+}
+
+html h1,
+html h2,
+html h3,
+html h4,
+html h5,
+html h6 {
+  font-weight: 600;
 }
 
 body {
@@ -30,6 +39,7 @@ body .page-wrapper {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  padding: 0 5%;
   height: 100vh;
   width: 100vw;
   text-align: center;
@@ -88,6 +98,50 @@ body .page-wrapper .nav-links ul a:visited {
 
 body .page-wrapper .nav-links ul a:hover {
   color: #f14435;
+}
+
+body .page-wrapper.docs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100vw;
+  height: auto;
+  text-align: left;
+  line-height: calc(16px * 1.68);
+}
+
+body .page-wrapper.docs h2 {
+  font-size: 24px;
+  line-height: calc(24px * 1.68);
+}
+
+body .page-wrapper.docs .logo {
+  padding: 1rem 0;
+}
+
+body .page-wrapper.docs .logo h1 {
+  font-size: 24px;
+}
+
+body .page-wrapper.docs .docs-content {
+  margin-bottom: 1.5rem;
+}
+
+body .page-wrapper.docs .endpoints {
+  margin-top: 1rem;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
+          box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
 }
 
 body footer .copyright {

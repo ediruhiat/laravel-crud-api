@@ -19,14 +19,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/products', function() {
-    $products = Product::all();
-
-    return View::make('products')->with('products', $products);
-});
-
-Route::get('/brands', function() {
-    $brands = Brand::all();
-
-    return View::make('brands')->with('brands', $brands);
+Route::get('/docs', function() {
+    return view('documentation');
 });
