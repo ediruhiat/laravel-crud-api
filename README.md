@@ -1,3 +1,4 @@
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
@@ -6,6 +7,49 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
+
+## Introduction
+This application is a simple REST API backend for CRUD usage. It's capable to do Create, Read, Update and Delete data from the app's database through API endpoints using HTTP request methods such as GET, POST, PUT/PATCH, DELETE. Here's the list of the available endpoints:
+
+![enter image description here](https://raw.githubusercontent.com/edrhyt/laravel-crud-api/master/public/images/endpoints.JPG)
+
+## Installation
+To install this application you have to install composer in your machine. Then install laravel package globally using composer. After got composer and laravel installed in your machine you can follow the steps below to get this application installed properly.
+
+### Using Git Clone
+If you have git installed in your machine you can follow simply open the terminal (cmd for windows user) then execute the command below.
+
+    git clone https://github.com/edrhyt/laravel-crud-api.git
+
+The command above will create a folder which is "laravel-crud-api" inside your active directory. After successfully clone the project then move to the "laravel-crud-api" folder using terminal with this command.
+
+    cd ./laravel-crud-api
+
+After that you can follow the rest of the steps.
+
+### Using Git Download Zip
+If you prefer to download the zip from the https://github.com/edrhyt/laravel-crud-api you can follow the steps below.
+
+ 1. Download the zip
+ Go to the github repository by following the link above. Then download the zip as shown below.
+ ![enter image description here](https://raw.githubusercontent.com/edrhyt/laravel-crud-api/master/public/images/zip_down.png)
+ 2. After successfully downloaded the zip, you can extract to wherever directory you wish using archive application you prefer (e.g WinRAR).
+ 3. Open terminal inside the downloaded folder which is "laravel-crud-api".
+
+### Import the MySQL database
+I will recommend to use phpmyadmin to get rid of this step, but you can choose the way you want to do this.
+
+Since I'm recommend to use phpmyadmin then open the phpmyadmin using browser by typing this URL http://localhost/phpmyadmin/ (in some cases might doesn't work, you can google the error). Then head to the import tab and hit the "Choose File" button.
+![enter image description here](https://raw.githubusercontent.com/edrhyt/laravel-crud-api/master/public/images/import.png)
+
+When file selector opens, find the laravel_eloquent_relationship.sql file inside database folder on the project directory then hit "Open". You should notice that the file is selected correctly the scroll down to bottom of the page and hit "Go" button.
+![enter image description here](https://raw.githubusercontent.com/edrhyt/laravel-crud-api/master/public/images/go_import.PNG)
+
+### Install dependencies
+On the terminal (active at project directory) use the following command to install the dependencies.
+
+    composer update
+After a while that should install all the required dependencies for the project to run properly.
 
 ## About Laravel
 
