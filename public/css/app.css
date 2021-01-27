@@ -1,0 +1,119 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  position: relative;
+  background-color: #eee;
+  min-height: 100vh;
+  width: 100%;
+}
+
+body .page-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+  color: #555;
+}
+
+body .page-wrapper h1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-column-gap: 10px;
+          column-gap: 10px;
+  font-weight: 600;
+  font-size: 38px;
+}
+
+body .page-wrapper h1 img {
+  width: 40px;
+}
+
+body .page-wrapper h1 .red {
+  color: #f14435;
+}
+
+body .page-wrapper small {
+  font-size: 16px;
+}
+
+body .page-wrapper .nav-links {
+  margin-top: 1rem;
+}
+
+body .page-wrapper .nav-links ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-column-gap: 20px;
+          column-gap: 20px;
+  list-style: none;
+}
+
+body .page-wrapper .nav-links ul a {
+  font-weight: 600;
+  font-size: 14px;
+  color: #444;
+  -webkit-transition: color 0.2s ease;
+  transition: color 0.2s ease;
+}
+
+body .page-wrapper .nav-links ul a:visited {
+  color: #444;
+}
+
+body .page-wrapper .nav-links ul a:hover {
+  color: #f14435;
+}
+
+body footer .copyright {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 1rem;
+}
+
+body footer .copyright p,
+body footer .copyright a {
+  color: #444;
+  font-size: 12px;
+}
+
+body footer .copyright a {
+  -webkit-transition: color 0.2s ease;
+  transition: color 0.2s ease;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+body footer .copyright a:visited {
+  color: #444;
+}
+
+body footer .copyright a:hover {
+  color: #f14435;
+}
+/*# sourceMappingURL=app.css.map */
