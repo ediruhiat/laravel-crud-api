@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Product;
+use App\Models\Brand;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +17,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/products', function() {
+    $products = Product::all();
+
+    return View::make('products')->with('products', $products);
+});
+
+Route::get('/brands', function() {
+    $brands = Brand::all();
+
+    return View::make('brands')->with('brands', $brands);
 });
