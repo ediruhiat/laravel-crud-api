@@ -15,7 +15,13 @@ class BrandController extends Controller
     public function index()
     {
         // get all brands
-        return Brand::all();
+        $brands = Brand::all();
+
+        foreach($brands as $brand){
+            $brand->products_list = Brand::find($brand->id)->products;
+        }
+
+        return $brands;
     }
 
     /**

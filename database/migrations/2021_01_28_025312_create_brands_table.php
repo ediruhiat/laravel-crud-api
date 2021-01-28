@@ -21,7 +21,7 @@ class CreateBrandsTable extends Migration
             $table->timestamps();
         });
 
-        // Insert some stuff
+        //Insert some stuff
         DB::table('brands')->insert(
             array(
                 'slug' => 'sony-corp-japan',
