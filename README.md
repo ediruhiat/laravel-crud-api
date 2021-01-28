@@ -36,20 +36,26 @@ If you prefer to download the zip from the https://github.com/edrhyt/laravel-cru
  2. After successfully downloaded the zip, you can extract to wherever directory you wish using archive application you prefer (e.g WinRAR).
  3. Open terminal inside the downloaded folder which is "laravel-crud-api".
 
-### Import the MySQL database
-I will recommend to use phpmyadmin to get rid of this step, but you can choose the way you want to do this.
-
-Since I'm recommend to use phpmyadmin then open the phpmyadmin using browser by typing this URL http://localhost/phpmyadmin/ (in some cases might doesn't work, you can google the error). Then head to the import tab and hit the "Choose File" button.
-![enter image description here](https://raw.githubusercontent.com/edrhyt/laravel-crud-api/master/public/images/import.png)
-
-When file selector opens, find the laravel_eloquent_relationship.sql file inside database folder on the project directory then hit "Open". You should notice that the file is selected correctly the scroll down to bottom of the page and hit "Go" button.
-![enter image description here](https://raw.githubusercontent.com/edrhyt/laravel-crud-api/master/public/images/go_import.PNG)
-
 ### Install dependencies
-On the terminal (active at project directory) use the following command to install the dependencies.
+Before dependecies installation you have to rename the ".env.example" file to ".env". You can also do that in the terminal by typing this command (for windows user):
+
+    ren .env.example .env
+After successfully renaming the ".env" file you should good to go to the installation by typing the command below.
 
     composer update
 After a while that should install all the required dependencies for the project to run properly.
+
+### Configuring the Project
+To configure the project correctly you can use these commands below and type it in the terminal. Make sure the MySQL server are running at port: 3306.
+
+    php artisan key:generate  
+    php artisan db:create laravel_eloquent_relationship  
+    php artisan migrate --force  
+    php artisan serve
+Open browser then head to http://localhost:8000/ to see if it's running.
+
+## Usage
+To use the REST API service you can use application like Postman or Insomnia. Example are provided using Insomnia application in the [Example](http://localhost:8000/example) page. Or you can simply test using the browser by visiting the endpoints provided above. For example you can visit http://localhost:8000/api/v1/brands/ to make a GET http request.
 
 ## About Laravel
 
