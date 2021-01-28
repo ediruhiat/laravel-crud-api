@@ -66,6 +66,7 @@ class BrandController extends Controller
          // update brand
          $brand = Brand::find($id);
          $brand->update($request->all());
+         $brand->status = "Updated Successfully.";
  
          return $brand;
     }
@@ -79,6 +80,10 @@ class BrandController extends Controller
     public function destroy($id)
     {
         // delete brand
-        return Brand::destroy($id);
+        $brand = Brand::find($id);
+        Brand::destroy($id);
+        $brand->status = "Deleted Successfully.";
+
+        return $brand;
     }
 }

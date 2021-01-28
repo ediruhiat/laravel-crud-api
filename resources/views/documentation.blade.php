@@ -70,28 +70,31 @@
                         </ol>
                     </li>
                     <li>
-                        <strong>Import the MySQL database</strong>
-
-                        <p>
-                            I will recommend to use phpmyadmin to get rid of this step, but you can choose the way you want to do this.
-                        </p>
-                        <p>
-                            Since I'm recommend to use phpmyadmin then open the phpmyadmin using browser by typing this URL <a href="http://localhost/phpmyadmin/">http://localhost/phpmyadmin/</a> (in some cases might doesn't work, you can google the error). Then head to the import tab and hit the "Choose File" button.
-                        </p>
-                        <img class="ins" src="{{ asset('images/import.png') }}" alt="import" style="width: 85%;"/>
-                        <p>
-                            When file selector opens, find the laravel_eloquent_relationship.sql file inside database folder on the project directory then hit "Open". You should notice that the file is selected correctly the scroll down to bottom of the page and hit "Go" button.
-                        </p>
-                        <img class="ins" src="{{ asset('images/go_import.png') }}" alt="go_import" style="width: 85%;"/>
-                    </li>
-                    <li>
                         <strong>Install dependencies</strong>
                         <p>
-                            On the terminal (active at project directory) use the following command to install the dependencies.
+                            Before dependecies installation you have to rename the ".env.example" file to ".env". You can also do that in the terminal by typing this command (for windows user):
+                            <code>
+                                ren .env.example .env
+                            </code>
+                            After successfully renaming the ".env" file you should good to go to the installation by typing the command below.
                             <code>
                                 composer update
                             </code>
                             After a while that should install all the required dependencies for the project to run properly.
+                        </p>
+                    </li>
+                    <li>
+                        <strong>Configuring the Project</strong>
+                        <p>
+                            To configure the project correctly you can use these commands below and type it in the terminal.
+                            Make sure the MySQL server are running at port: 3306.
+                            <code>
+                                php artisan key:generate<br/>
+                                php artisan db:create laravel_eloquent_relationship<br/>
+                                php artisan migrate --force<br/>
+                                php artisan serve
+                            </code>
+                            Open browser then head to http://localhost:8000/ to see if it's running.
                         </p>
                     </li>
                 </ul>
@@ -105,6 +108,606 @@
                 <p>
                     To use the REST API service you can use application like Postman or Insomnia. Example are provided using Insomnia application in the <a class="example-link" href="/example">Example</a> page. Or you can simply test using the browser by visiting the endpoints provided above. For example you can visit http://localhost:8000/api/v1/brands/ to make a GET http request.
                 </p>
+                <hr>
+                <h3>PATHS</h3>
+                <ul>
+                    <!-- GET -->
+                    <li>
+                        <strong>GET</strong>
+                        <code>
+                            http://localhost:8000/api/v1/products <br/>
+                            http://localhost:8000/api/v1/brands <br/>
+                            http://localhost:8000/api/v1/specs <br/>
+                        </code>
+                        <p>Return list of all products availabe.</p>
+                        <strong>Query List</strong>
+                        <table>
+                            <tr>
+                                <td class="code">id</td>
+                                <td>
+                                    <p class="semibold-italic">integer</p>
+                                    <p>Default value</p>
+                                    <code>
+                                        NULL
+                                    </code>
+                                    <p>
+                                        The id of product/brand/specs to show (e.g 1).
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </li>
+
+                    <hr>
+                    <!-- POST -->
+                    <li>
+                        <!-- Products -->
+                            <strong>POST</strong>
+                            <code>
+                                http://localhost:8000/api/v1/products <br/>
+                            </code>
+                            <p>Create a product using multipart form.</p>
+                            <strong>Query List</strong>
+                            <table>
+                                <tr>
+                                    <td class="code">slug (required)</td>
+                                    <td>
+                                        <p class="semibold-italic">string</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            NULL
+                                        </code>
+                                        <p>
+                                            The slug of the product to assign (e.g "nokia-x3").
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="code">brand_id (required)</td>
+                                    <td>
+                                        <p class="semibold-italic">small integer</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            0
+                                        </code>
+                                        <p>
+                                            The brand id of the product to assign (e.g 1). See brand list to get the brand id of each brand available.
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="code">name (required)</td>
+                                    <td>
+                                        <p class="semibold-italic">string</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            NULL
+                                        </code>
+                                        <p>
+                                            The name of the product to assign (e.g "Xperia X Max Pro").
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="code">model</td>
+                                    <td>
+                                        <p class="semibold-italic">string</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            NULL
+                                        </code>
+                                        <p>
+                                            The model of the product to assign (e.g "F8331").
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="code">specs_id</td>
+                                    <td>
+                                        <p class="semibold-italic">integer</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            0
+                                        </code>
+                                        <p>
+                                            The specs id for the product to assign (e.g 2). See the specs list to get all the specs available.
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="code">price (required)</td>
+                                    <td>
+                                        <p class="semibold-italic">integer</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            0
+                                        </code>
+                                        <p>
+                                            The price of the product to assign in IDR (e.g 2400000). 
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        <!-- End of Products -->
+
+                        <!-- Brands -->
+                            <strong>POST</strong>
+                            <code>
+                                http://localhost:8000/api/v1/brands<br/>
+                            </code>
+                            <p>Create a brand using multipart form.</p>
+                            <strong>Query List</strong>
+                            <table>
+                                <tr>
+                                    <td class="code">slug (required)</td>
+                                    <td>
+                                        <p class="semibold-italic">string</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            NULL
+                                        </code>
+                                        <p>
+                                            The slug of the brand to assign (e.g "realme-corp-singapoe").
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="code">brand_name (required)</td>
+                                    <td>
+                                        <p class="semibold-italic">string</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            NULL
+                                        </code>
+                                        <p>
+                                            The brand name of the product to assign (e.g "Realme").
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="code">country (required)</td>
+                                    <td>
+                                        <p class="semibold-italic">string</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            NULL
+                                        </code>
+                                        <p>
+                                            The country of the brand to assign (e.g "Singapore").
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        <!-- End of Brands -->
+
+                        <!-- Specs -->
+                            <strong>POST</strong>
+                            <code>
+                                http://localhost:8000/api/v1/brands<br/>
+                            </code>
+                            <p>Create a specs using multipart form.</p>
+                            <strong>Query List</strong>
+                            <table>
+                                <tr>
+                                    <td class="code">slug (required)</td>
+                                    <td>
+                                        <p class="semibold-italic">string</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            NULL
+                                        </code>
+                                        <p>
+                                            The slug of the specs to assign (e.g "xperia-xz-specs").
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="code">launch</td>
+                                    <td>
+                                        <p class="semibold-italic">date</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            2000-01-01 00:00:00
+                                        </code>
+                                        <p>
+                                            The date of the specs realeased to assign (e.g "2010-09-11 00:03:03").
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="code">display (required)</td>
+                                    <td>
+                                        <p class="semibold-italic">string</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            NULL
+                                        </code>
+                                        <p>
+                                            The display of the specs to assign (e.g "LCD IPS").
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="code">platform (required)</td>
+                                    <td>
+                                        <p class="semibold-italic">string</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            NULL
+                                        </code>
+                                        <p>
+                                            The platform of the specs to assign (e.g "Android 9.0").
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="code">cpu (required)</td>
+                                    <td>
+                                        <p class="semibold-italic">string</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            NULL
+                                        </code>
+                                        <p>
+                                            The cpu of the specs to assign (e.g "Qualcomm SDM665 Snapdragon 665 (11 nm)").
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="code">rom (required)</td>
+                                    <td>
+                                        <p class="semibold-italic">integer</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            0
+                                        </code>
+                                        <p>
+                                            The rom of the specs to assign in Giga Bytes (e.g 32).
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="code">ram (required)</td>
+                                    <td>
+                                        <p class="semibold-italic">integer</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            0
+                                        </code>
+                                        <p>
+                                            The ram of the specs to assign in Giga Bytes (e.g 4).
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="code">camera (required)</td>
+                                    <td>
+                                        <p class="semibold-italic">integer</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            0
+                                        </code>
+                                        <p>
+                                            The resolution of camera of the specs to assign in Mega Pixels (e.g 13).
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="code">battery (required)</td>
+                                    <td>
+                                        <p class="semibold-italic">integer</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            0
+                                        </code>
+                                        <p>
+                                            The capacity of battery of the specs to assign in mAH (e.g 2900).
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        <!-- End of Specs -->
+                    </li>
+
+                    <hr>
+                    <!-- PUT/PATCH -->
+                    <li>
+                        <!-- Products -->
+                            <strong>PUT/PATCH</strong>
+                            <code>
+                                http://localhost:8000/api/v1/products <br/>
+                            </code>
+                            <p>Update a product using multipart form.</p>
+                            <strong>Query List</strong>
+                            <table>
+                                <tr>
+                                    <td class="code">slug</td>
+                                    <td>
+                                        <p class="semibold-italic">string</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            NULL
+                                        </code>
+                                        <p>
+                                            The slug of the product to update (e.g "nokia-x3").
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="code">brand_id</td>
+                                    <td>
+                                        <p class="semibold-italic">small integer</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            0
+                                        </code>
+                                        <p>
+                                            The brand id of the product to update (e.g 1). See brand list to get the brand id of each brand available.
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="code">name</td>
+                                    <td>
+                                        <p class="semibold-italic">string</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            NULL
+                                        </code>
+                                        <p>
+                                            The name of the product to update (e.g "Xperia X Max Pro").
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="code">model</td>
+                                    <td>
+                                        <p class="semibold-italic">string</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            NULL
+                                        </code>
+                                        <p>
+                                            The model of the product to update (e.g "F8331").
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="code">specs_id</td>
+                                    <td>
+                                        <p class="semibold-italic">integer</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            0
+                                        </code>
+                                        <p>
+                                            The specs id for the product to update (e.g 2). See the specs list to get all the specs available.
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="code">price</td>
+                                    <td>
+                                        <p class="semibold-italic">integer</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            0
+                                        </code>
+                                        <p>
+                                            The price of the product to update in IDR (e.g 2400000). 
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        <!-- End of Products -->
+
+                        <!-- Brands -->
+                            <strong>PUT/PATCH</strong>
+                            <code>
+                                http://localhost:8000/api/v1/brands<br/>
+                            </code>
+                            <p>Create a brand using multipart form.</p>
+                            <strong>Query List</strong>
+                            <table>
+                                <tr>
+                                    <td class="code">slug</td>
+                                    <td>
+                                        <p class="semibold-italic">string</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            NULL
+                                        </code>
+                                        <p>
+                                            The slug of the brand to update (e.g "realme-corp-singapoe").
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="code">brand_name</td>
+                                    <td>
+                                        <p class="semibold-italic">string</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            NULL
+                                        </code>
+                                        <p>
+                                            The brand name of the product to update (e.g "Realme").
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="code">country</td>
+                                    <td>
+                                        <p class="semibold-italic">string</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            NULL
+                                        </code>
+                                        <p>
+                                            The country of the brand to update (e.g "Singapore").
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        <!-- End of Brands -->
+                        
+                        <!-- Specs -->
+                            <strong>PUT/PATCH</strong>
+                            <code>
+                                http://localhost:8000/api/v1/brands<br/>
+                            </code>
+                            <p>Create a specs using multipart form.</p>
+                            <strong>Query List</strong>
+                            <table>
+                                <tr>
+                                    <td class="code">slug</td>
+                                    <td>
+                                        <p class="semibold-italic">string</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            NULL
+                                        </code>
+                                        <p>
+                                            The slug of the specs to update (e.g "xperia-xz-specs").
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="code">launch</td>
+                                    <td>
+                                        <p class="semibold-italic">date</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            2000-01-01 00:00:00
+                                        </code>
+                                        <p>
+                                            The date of the specs realeased to update (e.g "2010-09-11 00:03:03").
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="code">display</td>
+                                    <td>
+                                        <p class="semibold-italic">string</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            NULL
+                                        </code>
+                                        <p>
+                                            The display of the specs to update (e.g "LCD IPS").
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="code">platform</td>
+                                    <td>
+                                        <p class="semibold-italic">string</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            NULL
+                                        </code>
+                                        <p>
+                                            The platform of the specs to update (e.g "Android 9.0").
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="code">cpu</td>
+                                    <td>
+                                        <p class="semibold-italic">string</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            NULL
+                                        </code>
+                                        <p>
+                                            The cpu of the specs to update (e.g "Qualcomm SDM665 Snapdragon 665 (11 nm)").
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="code">rom</td>
+                                    <td>
+                                        <p class="semibold-italic">integer</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            0
+                                        </code>
+                                        <p>
+                                            The rom of the specs to update in Giga Bytes (e.g 32).
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="code">ram</td>
+                                    <td>
+                                        <p class="semibold-italic">integer</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            0
+                                        </code>
+                                        <p>
+                                            The ram of the specs to update in Giga Bytes (e.g 4).
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="code">camera</td>
+                                    <td>
+                                        <p class="semibold-italic">integer</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            0
+                                        </code>
+                                        <p>
+                                            The resolution of camera of the specs to update in Mega Pixels (e.g 13).
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="code">battery</td>
+                                    <td>
+                                        <p class="semibold-italic">integer</p>
+                                        <p>Default value</p>
+                                        <code>
+                                            0
+                                        </code>
+                                        <p>
+                                            The capacity of battery of the specs to update in mAH (e.g 2900).
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        <!-- End of Specs -->
+                    </li>
+
+                    <hr>
+                    <!-- DELETE -->
+                    <li>
+                        <strong>DELETE</strong>
+                        <code>
+                            http://localhost:8000/api/v1/products/{id} <br/>
+                            http://localhost:8000/api/v1/brands/{id} <br/>
+                            http://localhost:8000/api/v1/specs/{id} <br/>
+                        </code>
+                        <p>Delete a product/brand/spec based on the {id}</p>
+                        <strong>Query List</strong>
+                        <table>
+                            <tr>
+                                <td class="code">id (required)</td>
+                                <td>
+                                    <p class="semibold-italic">integer</p>
+                                    <p>Default value</p>
+                                    <code>
+                                        NULL
+                                    </code>
+                                    <p>
+                                        The id of product/brand/specs to delete (e.g 1).
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

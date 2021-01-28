@@ -153,9 +153,37 @@ body {
                     color: #eee;
                 }
 
+                hr {
+                    margin: 0.5rem 0;
+                }
+
                 .example-link {
                     text-decoration: underline;
                     color: #f14435;
+                }
+
+                .usage {
+                    table {
+                        width: 100%;
+
+                        .semibold-italic {
+                            font-style: italic;
+                            font-weight: 600;
+                        }
+
+                        .code {
+                            font-family: "Courier New", "Lucida Consolas",
+                                sans-serif;
+                        }
+
+                        td {
+                            vertical-align: top;
+                        }
+
+                        td:nth-child(1) {
+                            width: 25%;
+                        }
+                    }
                 }
             }
         }

@@ -70,6 +70,7 @@ class ProductController extends Controller
         // update product
         $product = Product::find($id);
         $product->update($request->all());
+        $product->status = "Updated successfully.";
 
         return $product;
     }
@@ -83,6 +84,10 @@ class ProductController extends Controller
     public function destroy($id)
     {
         // delete product
-        return Product::destroy($id);
+        $product = Product::find($id);
+        Product::destroy($id);
+        $product->status = "Deleted successfully.";
+
+        return $product;
     }
 }

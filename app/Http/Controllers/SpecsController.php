@@ -66,6 +66,7 @@ class SpecsController extends Controller
         // update spec
         $specs = Specs::find($id);
         $specs->update($request->all());
+        $specs->status = "Updated successfully.";
 
         return $specs;
     }
@@ -79,6 +80,10 @@ class SpecsController extends Controller
     public function destroy($id)
     {
         // delete spec
-        return Specs::destroy($id);
+        $specs = Specs::find($id);
+        Specs::destroy($id);
+        $specs->status = "Deleted successfully.";
+
+        return $specs;
     }
 }

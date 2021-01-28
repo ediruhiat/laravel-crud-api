@@ -182,9 +182,34 @@ body .page-wrapper.docs .docs-content code {
   color: #eee;
 }
 
+body .page-wrapper.docs .docs-content hr {
+  margin: 0.5rem 0;
+}
+
 body .page-wrapper.docs .docs-content .example-link {
   text-decoration: underline;
   color: #f14435;
+}
+
+body .page-wrapper.docs .docs-content .usage table {
+  width: 100%;
+}
+
+body .page-wrapper.docs .docs-content .usage table .semibold-italic {
+  font-style: italic;
+  font-weight: 600;
+}
+
+body .page-wrapper.docs .docs-content .usage table .code {
+  font-family: "Courier New", "Lucida Consolas", sans-serif;
+}
+
+body .page-wrapper.docs .docs-content .usage table td {
+  vertical-align: top;
+}
+
+body .page-wrapper.docs .docs-content .usage table td:nth-child(1) {
+  width: 25%;
 }
 
 body .page-wrapper .ins {
